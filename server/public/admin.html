@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="admin_style.css">
+    <title>Document</title>
+</head>
+<body>
+    <navbar>
+        <ul class="navbar">
+            <li style="margin-left: 15px;" class="navbtn" onclick="Content('Books')">Книги</li>
+            <li class="navbtn" onclick="Content('Users')">Пользователи</li>
+            <li class="navbtn">Заглушка</li>
+            <li class="navbtn">Заглушка</li>
+            <li class="navbtn" style="margin-left: auto;
+             margin-right: 15px; /* ← именно здесь задаём отступ справа */" id='exit'>Выйти</li>
+        </ul>
+    </navbar>
+    <content id="contentblock">
+        
+    </content>
+</body>
+<script>
+    function Content(data)
+    {
+        if(data === 'Books')
+            document.getElementById("contentblock").innerHTML = `<h2>Форма для книг</h2>
+        <form>
+          <label>Название книги:<br>
+            <input type="text" name="book-title"><br><br>
+          </label>
+          <label>Ссылка на картинку:<br>
+            <input type="text" name="image-link"><br><br>
+          </label>
+          <label>Рейтинг:<br>
+            <input type="text" name="rate-id"><br><br>
+          </label>
+          <label>Название категории:<br>
+            <input type="text" name="category-name"><br><br>
+          </label>
+          
+          <label>Рейтинг:<br>
+            <input type="text" name="author-name"><br><br>
+          </label>
+          <label>Автор:<br>
+            <input type="text" name="book-link"><br><br>
+          </label>
+          <button type="submit">Сохранить</button>
+        </form>`;
+        if(data === 'Users')
+        {
+            document.getElementById("contentblock").innerHTML = `<h2>Форма для Пользователей</h2>
+        <form>
+          <label>Название книги:<br>
+            <input type="text" name="book-title"><br><br>
+          </label>
+          <label>Автор:<br>
+            <input type="text" name="book-author"><br><br>
+          </label>
+          <button type="submit">Сохранить</button>
+        </form>`;
+        }
+    }
+
+</script>
+</html>
