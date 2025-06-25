@@ -12,6 +12,22 @@ exports.createBook = async (req, res) =>
     }
     }
 
+
+
+
+exports.getAllBooks = async (req, res)=>
+    {
+        
+        try{
+            const result = await pool.query('SELECT * from books');
+            res.status(200).json(result.rows); // Всегда используй json()
+        }
+        catch{
+            res.status(500).json({ error: err.message });
+        }
+    }
+
+
 exports.getBook = async (req, res) => {
     const { bookname } = req.body;
 
