@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css " rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1c1c1c, #494f54);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: rgba(50, 50, 50, 0.9);
+            padding: 40px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 400px;
+            color: #fff;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-header h3 {
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 6px;
+            color: #ccc;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px 12px;
+            padding-left: 40px; 
+            border: none;
+            border-radius: 6px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .form-group .icon {
+            position: absolute;
+            left: 12px;
+            top: 34px;
+            color: #aaa;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .form-actions a {
+            font-size: 14px;
+            color: #fafafa;
+            text-decoration: none;
+        }
+
+        .form-actions a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-login {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            font-size: 14px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .btn-login:hover {
+            background-color: #0056b3;
+        }
+
+        .alert-success {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .alert-warning {
+            background-color: #ffc107;
+            color: black;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .close-btn {
+            float: right;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .card-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .card-footer a {
+            color: #fafafa;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .card-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <div class="alert-success" style="display: none;">
+        <span>Вы успешно зарегистрировались!</span>
+        <span class="close-btn">&times;</span>
+    </div>
+
+    <div class="login-header">
+        <h3>Авторизация</h3>
+    </div>
+
+    <form action="/login/" method="post">
+        <input type="hidden" name="csrfmiddlewareexempt" value="true"> <!-- если нужно -->
+
+        <div class="form-group">
+            <label for="username">Имя пользователя</label>
+            <i class="fas fa-user icon"></i>
+            <input type="text" id="username" name="username" placeholder="Введите имя">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Пароль</label>
+            <i class="fas fa-lock icon"></i>
+            <input type="password" id="password" name="password" placeholder="Введите пароль">
+        </div>
+
+        <div class="form-actions">
+            <a href="#">Забыли пароль?</a>
+            <button type="submit" class="btn-login">Авторизоваться</button>
+        </div>
+    </form>
+
+    <div class="card-footer">
+        <p class="small">Нужен аккаунт? <a href="#">Зарегистрируйся!</a></p>
+    </div>
+
+</div>
+
+<script>
+    document.querySelector('.close-btn')?.addEventListener('click', function () {
+        document.querySelector('.alert-success').style.display = 'none';
+    });
+</script>
+
+</body>
+</html>
