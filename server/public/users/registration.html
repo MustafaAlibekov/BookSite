@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css " rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1c1c1c, #494f54);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .register-container {
+            background-color: rgba(50, 50, 50, 0.9);
+            padding: 40px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 700px;
+            color: #fff;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .register-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            position: relative;
+            flex: 1;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 6px;
+            color: #ccc;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            padding-left: 40px; 
+            border: none;
+            border-radius: 6px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .form-group .icon {
+            position: absolute;
+            left: 12px;
+            top: 34px;
+            color: #aaa;
+        }
+
+        .btn-register {
+            width: 100%;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .btn-register:hover {
+            background-color: #218838;
+        }
+
+        .card-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .card-footer a {
+            color: #fafafa;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .card-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="register-container">
+
+    <div class="register-header">
+        <h3 style="font-weight: bold;">Создать аккаунт</h3>
+    </div>
+
+    <form action="/register/" method="post">
+        <input type="hidden" name="csrfmiddlewareexempt" value="true">
+        <div class="form-row">
+        <div class="form-group">
+            <label for="username">Имя</label>
+            <i class="fas fa-user icon"></i>
+            <input type="text" id="username" name="username" placeholder="Введите имя">
+        </div>
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <i class="fas fa-envelope icon"></i>
+            <input type="email" id="email" name="email" placeholder="example@example.com">
+        </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="password1">Пароль</label>
+                <i class="fas fa-lock icon"></i>
+                <input type="password" id="password1" name="password1" placeholder="Введите пароль">
+            </div>
+            <div class="form-group">
+                <label for="password2">Подтверждение пароля</label>
+                <i class="fas fa-lock icon"></i>
+                <input type="password" id="password2" name="password2" placeholder="Повторите пароль">
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <button type="submit" class="btn-register">Создать аккаунт</button>
+        </div>
+    </form>
+
+    <div class="card-footer">
+        <p class="small">Уже есть аккаунт? <a href="/login/">Авторизоваться</a></p>
+    </div>
+
+</div>
+
+</body>
+</html>

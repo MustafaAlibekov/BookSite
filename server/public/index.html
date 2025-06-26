@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Онлайн библиотека</title>
   <style>
+    /* Тут остаётся весь твой CSS как был */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -25,13 +26,12 @@
       display: flex;
       gap: 20px;
     }
-    /* Боковая панель */
     .sidebar {
       width: 220px;
       background: #fff;
       padding: 15px;
       border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       position: sticky;
       top: 20px;
       height: fit-content;
@@ -68,13 +68,11 @@
       font-weight: bold;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    /* Основной контент */
     .main-content {
       flex-grow: 1;
       padding-top: 20px;
       align-self: flex-start;
     }
-    /* Поиск */
     .search-box {
       width: 100%;
       padding: 10px;
@@ -94,7 +92,7 @@
       background: white;
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       text-align: center;
       transition: all 0.3s ease;
       width: 100%;
@@ -105,7 +103,7 @@
     }
     .product-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
     }
     .product-card img {
       width: 100%;
@@ -167,12 +165,11 @@
       background-color: #2980b9;
       transform: translateY(-2px);
     }
-    /* Шапка */
     .header {
       background: #ffffff;
       color: #333;
       padding: 10px 0;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -205,7 +202,6 @@
       background: #2980b9;
       transform: translateY(-2px);
     }
-    /* Футер */
     .footer {
       background: #2c3e50;
       color: #ecf0f1;
@@ -221,7 +217,6 @@
     .footer a:hover {
       text-decoration: underline;
     }
-    /* Пагинация */
     .pagination {
       display: flex;
       justify-content: center;
@@ -248,7 +243,6 @@
       opacity: 0.5;
       cursor: not-allowed;
     }
-    /* Адаптивность */
     @media (max-width: 900px) {
       .products {
         grid-template-columns: repeat(2, 1fr);
@@ -317,9 +311,7 @@
   <div class="main-content">
     <!-- Поле поиска -->
     <input type="text" class="search-box" id="searchInput" placeholder="Поиск по названию..." />
-
     <main class="products" id="productsContainer"></main>
-
     <!-- Пагинация -->
     <div class="pagination" id="pagination"></div>
   </div>
@@ -344,31 +336,22 @@
     let currentSearch = '';
     let allProducts = [];
 
-    // Данные о книгах
-    allProducts = [
-      { id: 1, name: "Властелин колец", category: "fantasy", image: "https://cdn.monetnik.ru/storage/market-lot/31/61/392631/1399908_big.jpg"  },
-      { id: 2, name: "Гарри Поттер и философский камень", category: "fantasy", image: "https://ir.ozone.ru/s3/multimedia-w/c1000/6210422336.jpg"  },
-      { id: 3, name: "1984", category: "foreign", image: "https://m.media-amazon.com/images/I/71kxa1-0mfL._AC_UF1000,1000_QL80_.jpg"  },
-      { id: 4, name: "Мастер и Маргарита", category: "classic", image: "https://content.img-gorod.ru/pim/products/images/a0/cd/0190b9a3-724a-71e0-9c86-4fe230cea0cd.jpg?width=0&height=1200&fit=bounds" },
-      { id: 5, name: "Преступление и наказание", category: "classic", image: "https://cdn.ast.ru/v2/ASE000000000703427/COVER/cover1__w220.jpg" },
-      { id: 6, name: "JavaScript: Полное руководство", category: "it", image: "https://ir.ozone.ru/s3/multimedia-d/c1000/6029228593.jpg" },
-      { id: 7, name: "Игра Эндера", category: "fantasy", image: "https://m.media-amazon.com/images/I/81a5KHEkwQL._AC_UF1000,1000_QL80_.jpg" },
-      { id: 8, name: "Шерлок Холмс", category: "detective", image: "https://www.moscowbooks.ru/image/book/679/orig/i679912.jpg?cu=20191120141513" },
-      { id: 9, name: "Clean Code", category: "it", image: "https://m.media-amazon.com/images/I/41xShlnTZTL._AC_UF1000,1000_QL80_.jpg" },
-      { id: 10, name: "Война и мир", category: "classic", image: "https://cdn1.ozone.ru/s3/multimedia-5/6888492617.jpg" },
-      { id: 11, name: "Убийство в Восточном экспрессе", category: "detective", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9LBpzgPDiFHVqvWEv7yjDdubgNgW6ssgO6g&s" },
-      { id: 12, name: "Грокаем алгоритмы", category: "it", image: "https://content.img-gorod.ru/pim/products/images/a2/51/01907865-5664-7c70-b311-4978e038a251.jpg?width=336&height=480&fit=bounds" }
-    ];
+    // Загрузка книг с сервера
+    async function loadBooks() {
+      try {
+        const response = await fetch('http://localhost:3000/books');
+        if (!response.ok) throw new Error('Ошибка сети');
+        const data = await response.json();
+        allProducts = data;
+        renderProducts();
+        renderPagination();
+      } catch (error) {
+        console.error('Ошибка загрузки книг:', error);
+        productsContainer.innerHTML = '<p>Не удалось загрузить книги</p>';
+      }
+    }
 
-    const categoryNames = {
-      all: "Все книги",
-      fantasy: "Фантастика",
-      foreign: "Зарубежная",
-      classic: "Классика",
-      it: "IT",
-      detective: "Детектив"
-    };
-
+    // Фильтрация
     function getFilteredProducts() {
       return allProducts.filter(product =>
         (currentCategory === 'all' || product.category === currentCategory) &&
@@ -376,6 +359,7 @@
       );
     }
 
+    // Рендеринг книг
     function renderProducts() {
       const filtered = getFilteredProducts();
       const startIndex = (currentPage - 1) * itemsPerPage;
@@ -383,13 +367,14 @@
       const productsToShow = filtered.slice(startIndex, endIndex);
 
       productsContainer.innerHTML = '';
+
       productsToShow.forEach(product => {
         const card = document.createElement('div');
         card.className = 'product-card';
         card.innerHTML = `
           <img src="${product.image}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/150x250?text=Обложка+не+загружена'">
           <div class="product-info">
-            <p class="category">${categoryNames[product.category] || product.category}</p>
+            <p class="category">${product.category}</p>
             <div class="product-title">${product.name}</div>
             <div class="actions">
               <button class="download">Скачать</button>
@@ -411,6 +396,7 @@
       }
     }
 
+    // Пагинация
     function renderPagination() {
       const filtered = getFilteredProducts();
       const pageCount = Math.ceil(filtered.length / itemsPerPage);
@@ -432,10 +418,8 @@
       const maxVisiblePages = 5;
       let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
       let endPage = startPage + maxVisiblePages - 1;
-      if (endPage > pageCount) {
-        endPage = pageCount;
-        startPage = Math.max(1, endPage - maxVisiblePages + 1);
-      }
+      if (endPage > pageCount) endPage = pageCount;
+      if (startPage > pageCount - maxVisiblePages + 1) startPage = pageCount - maxVisiblePages + 1;
 
       if (startPage > 1) {
         const firstPageButton = document.createElement('button');
@@ -514,8 +498,7 @@
     });
 
     // Инициализация
-    renderProducts();
-    renderPagination();
+    loadBooks(); // Загружаем книги при старте
   });
 </script>
 </body>
